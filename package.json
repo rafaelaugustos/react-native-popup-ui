@@ -1,0 +1,32 @@
+{
+  "name": "popup-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RafaelAugustoS/popup-ui-rn.git"
+  },
+  "keywords": [
+    "react-native",
+    "react-component",
+    "react-native-component",
+    "react",
+    "react native",
+    "mobile",
+    "ios",
+    "android",
+    "ui",
+    "popup",
+    "popup-ui",
+    "popup-ui-design"
+  ],
+  "author": "Rafael Augusto",
+  "license": "ISC",
+  "devDependencies": {
+    "metro-react-native-babel-preset": "^0.54.0"
+  }
+}
