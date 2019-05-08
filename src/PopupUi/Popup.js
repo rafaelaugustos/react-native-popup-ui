@@ -1,30 +1,89 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet , Image } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, Image, Animated, Dimensions } from 'react-native'
 import PropTypes from 'prop-types'
-//import { returnStatusImage } from './func'
+
+const HEIGHT = Dimensions.get('window').height
+const STATE = {
+    positionView: new Animated.Value(HEIGHT),
+    opacity: new Animated.Value(0),
+    positionPopup: new Animated.Value(HEIGHT)
+}
+
+const show = () => {
+    Animated.sequence([
+        Animated.timing(STATE.positionView, {
+            toValue: 0,
+            duration: 100
+        }),
+        Animated.timing(STATE.opacity, {
+            toValue: 1,
+            duration: 300
+        }),
+        Animated.spring(STATE.positionPopup, {
+            toValue: HEIGHT / 3,
+            bounciness: 15,
+            useNativeDriver: true
+        })
+    ]).start()
+}
+
+const hide = () => {
+    Animated.sequence([
+        Animated.timing(STATE.positionPopup, {
+            toValue: HEIGHT,
+            duration: 250,
+            useNativeDriver: true
+        }),
+        Animated.timing(STATE.opacity, {
+            toValue: 0,
+            duration: 300
+        }),
+        Animated.timing(STATE.positionView, {
+            toValue: HEIGHT,
+            duration: 100
+        })
+    ]).start()
+}
 
 const Popup = (props) => {
-    const { Title, Type, TextBody, ButtonText } = props
+    const { Title, Type, TextBody, ButtonText, Callback, Background } = props
+
+    setTimeout(() => {
+        show()
+    }, 3000)
     
     return(
-        <View style={styles.Message}>
-            <View style={styles.Header} />
+        <Animated.View 
+            style={[styles.Container, {
+                backgroundColor: Background,
+                opacity: STATE.opacity,
+                transform: [
+                    { translateY: STATE.positionView }
+                ]
+            }]}>
+            <Animated.View style={[styles.Message, {
+                transform: [
+                    { translateY: STATE.positionPopup }
+                ] 
+            }]}>
+                <View style={styles.Header} />
 
-            <Image 
-                source={require('../assets/yes.png')}
-                resizeMode="contain"
-                style={styles.Image}
-            />
+                <Image 
+                    source={require('../../assets/images/check.png')}
+                    resizeMode="contain"
+                    style={styles.Image}
+                />
 
-            <View style={styles.Content}>
-                <Text style={styles.Title}>{ Title }</Text>
-                <Text style={styles.Desc}>{ TextBody }</Text>
+                <View style={styles.Content}>
+                    <Text style={styles.Title}>{ Title }</Text>
+                    <Text style={styles.Desc}>{ TextBody }</Text>
 
-                <TouchableOpacity style={[styles.Button, styles[Type]]}>
-                    <Text style={styles.TextButton}>{ ButtonText }</Text>
-                </TouchableOpacity>
-            </View>
-        </View>
+                    <TouchableOpacity style={[styles.Button, styles[Type]]} onPress={Callback}>
+                        <Text style={styles.TextButton}>{ ButtonText }</Text>
+                    </TouchableOpacity>
+                </View>
+            </Animated.View>
+        </Animated.View>
     )
 }
 
@@ -32,17 +91,29 @@ Popup.defaultProps = {
     Title: 'Upload complete',
     Type: 'Success',
     TextBody: 'Congrats! Your upload successfully done',
-    ButtonText: 'Ok'
+    ButtonText: 'Ok',
+    Callback: () => hide(),
+    Background: 'rgba(0, 0, 0, 0.5)'
 }
 
 Popup.propTypes = {
     Title: PropTypes.string,
     Type: PropTypes.oneOf(['Success', 'Error', 'Warning']),
     TextBody: PropTypes.string,
-    ButtonText: PropTypes.string
+    ButtonText: PropTypes.string,
+    Callback: PropTypes.func,
+    Background: PropTypes.string
 }
 
 const styles = StyleSheet.create({
+    Container: {
+        position: 'absolute',
+        zIndex: 9,
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        alignItems: 'center'
+    },  
     Message: {
         maxWidth: 300,
         width: 230,
@@ -50,7 +121,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderRadius: 30,
         alignItems: 'center',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        position: 'absolute',
     },
     Content: {
         padding: 20,
