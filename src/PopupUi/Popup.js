@@ -48,13 +48,13 @@ const hide = () => {
 const handleImage = (props) => {
     switch(props.Type){
         case 'Success':
-            return require('../../assets/images/Success.png')
+            return require('../assets/Success.png')
             break
         case 'Error':
-            return require('../../assets/images/Error.png')
+            return require('../assets/Error.png')
             break
         case 'Warning':
-            return require('../../assets/images/Warning.png')
+            return require('../assets/Warning.png')
             break
     }
 }
