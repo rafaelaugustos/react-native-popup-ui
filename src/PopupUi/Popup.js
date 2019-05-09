@@ -45,6 +45,20 @@ const hide = () => {
     ]).start()
 }
 
+const handleImage = (props) => {
+    switch(props.Type){
+        case 'Success':
+            return require('../../assets/images/Success.png')
+            break
+        case 'Error':
+            return require('../../assets/images/Error.png')
+            break
+        case 'Warning':
+            return require('../../assets/images/Warning.png')
+            break
+    }
+}
+
 const Popup = (props) => {
     const { Title, Type, TextBody, ButtonText, Callback, Background } = props
 
@@ -69,7 +83,7 @@ const Popup = (props) => {
                 <View style={styles.Header} />
 
                 <Image 
-                    source={require('../../assets/images/check.png')}
+                    source={handleImage({Type})}
                     resizeMode="contain"
                     style={styles.Image}
                 />
@@ -177,6 +191,17 @@ const styles = StyleSheet.create({
     Error: {
         backgroundColor: '#F29091',
         shadowColor: "#F29091",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.36,
+        shadowRadius: 6.68,
+        elevation: 11
+    },
+    Warning: {
+        backgroundColor: '#fbd10d',
+        shadowColor: "#fbd10d",
         shadowOffset: {
             width: 0,
             height: 5,
