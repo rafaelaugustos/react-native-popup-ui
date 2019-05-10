@@ -4,10 +4,7 @@ import { Popup } from 'popup-ui'
 
 class App extends Component {
   state = {
-    title: '',
-    body: '',
-    button: '',
-    type: ''
+    visible: false
   }
 
   handlePopup = (props) => {
@@ -29,7 +26,7 @@ class App extends Component {
           <Text>Erro</Text>
         </TouchableOpacity>
 
-        <Popup />
+        <Popup visible={this.state.visible} />
       </View>
     )
   }

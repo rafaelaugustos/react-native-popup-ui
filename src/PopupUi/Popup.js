@@ -1,132 +1,164 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Image, Animated, Dimensions } from 'react-native'
 import PropTypes from 'prop-types'
 
+const WIDTH = Dimensions.get('window').width
 const HEIGHT = Dimensions.get('window').height
-const STATE = {
-    positionView: new Animated.Value(HEIGHT),
-    opacity: new Animated.Value(0),
-    positionPopup: new Animated.Value(HEIGHT)
-}
 
-const show = () => {
-    Animated.sequence([
-        Animated.timing(STATE.positionView, {
-            toValue: 0,
-            duration: 100
-        }),
-        Animated.timing(STATE.opacity, {
-            toValue: 1,
-            duration: 300
-        }),
-        Animated.spring(STATE.positionPopup, {
-            toValue: HEIGHT / 3,
-            bounciness: 15,
-            useNativeDriver: true
-        })
-    ]).start()
-}
+class Popup extends Component {
+    state = {
+        positionView: new Animated.Value(HEIGHT),
+        opacity: new Animated.Value(0),
+        positionPopup: new Animated.Value(HEIGHT)
+    }
 
-const hide = () => {
-    Animated.sequence([
-        Animated.timing(STATE.positionPopup, {
-            toValue: HEIGHT,
-            duration: 250,
-            useNativeDriver: true
-        }),
-        Animated.timing(STATE.opacity, {
-            toValue: 0,
-            duration: 300
-        }),
-        Animated.timing(STATE.positionView, {
-            toValue: HEIGHT,
-            duration: 100
-        })
-    ]).start()
-}
+    componentWillReceiveProps(nextProps){
+        if(nextProps.Visible){
+            this.start()
+        }else{
+            this.hide()
+        }
 
-const handleImage = (props) => {
-    switch(props.Type){
-        case 'Success':
-            return require('../assets/Success.png')
-            break
-        case 'Error':
-            return require('../assets/Error.png')
-            break
-        case 'Warning':
-            return require('../assets/Warning.png')
-            break
+        return false
+    }
+
+    start(){
+        Animated.sequence([
+            Animated.timing(this.state.positionView, {
+                toValue: 0,
+                duration: 100
+            }),
+            Animated.timing(this.state.opacity, {
+                toValue: 1,
+                duration: 300
+            }),
+            Animated.spring(this.state.positionPopup, {
+                toValue: HEIGHT / 3,
+                bounciness: 15,
+                useNativeDriver: true
+            })
+        ]).start()
+
+        if(this.props.AutoClose){
+            setTimeout(() => {
+                this.hide()
+            }, this.props.Timing)
+        }
+
+    }
+
+    hide(){
+        Animated.sequence([
+            Animated.timing(this.state.positionPopup, {
+                toValue: HEIGHT,
+                duration: 250,
+                useNativeDriver: true
+            }),
+            Animated.timing(this.state.opacity, {
+                toValue: 0,
+                duration: 300
+            }),
+            Animated.timing(this.state.positionView, {
+                toValue: HEIGHT,
+                duration: 100
+            })
+        ]).start()
+    }
+
+
+    handleImage(props){
+        switch(props.Type){
+            case 'Success':
+                return require('../assets/Success.png')
+                break
+            case 'Error':
+                return require('../assets/Error.png')
+                break
+            case 'Warning':
+                return require('../assets/Warning.png')
+                break
+        }
+    }
+
+    render(){
+        const { Title, Type, TextBody, Button, ButtonText, Callback, Background } = this.props
+
+        return(
+            <Animated.View 
+                ref={c => this._root = c}
+                style={[styles.Container, {
+                    backgroundColor: Background,
+                    opacity: this.state.opacity,
+                    transform: [
+                        { translateY: this.state.positionView }
+                    ]
+                }]}>
+                <Animated.View style={[styles.Message, {
+                    transform: [
+                        { translateY: this.state.positionPopup }
+                    ] 
+                }]}>
+                    <View style={styles.Header} />
+
+                    <Image 
+                        source={this.handleImage({Type})}
+                        resizeMode="contain"
+                        style={styles.Image}
+                    />
+
+                    <View style={styles.Content}>
+                        <Text style={styles.Title}>{ Title }</Text>
+                        <Text style={styles.Desc}>{ TextBody }</Text>
+                        {
+                            Button && 
+                            <TouchableOpacity style={[styles.Button, styles[Type]]} onPress={Callback}>
+                                <Text style={styles.TextButton}>{ ButtonText }</Text>
+                            </TouchableOpacity>
+                        }
+                    </View>
+                </Animated.View>
+            </Animated.View>
+        )
     }
 }
 
-const Popup = (props) => {
-    const { Title, Type, TextBody, ButtonText, Callback, Background } = props
-
-    setTimeout(() => {
-        show()
-    }, 3000)
-    
-    return(
-        <Animated.View 
-            style={[styles.Container, {
-                backgroundColor: Background,
-                opacity: STATE.opacity,
-                transform: [
-                    { translateY: STATE.positionView }
-                ]
-            }]}>
-            <Animated.View style={[styles.Message, {
-                transform: [
-                    { translateY: STATE.positionPopup }
-                ] 
-            }]}>
-                <View style={styles.Header} />
-
-                <Image 
-                    source={handleImage({Type})}
-                    resizeMode="contain"
-                    style={styles.Image}
-                />
-
-                <View style={styles.Content}>
-                    <Text style={styles.Title}>{ Title }</Text>
-                    <Text style={styles.Desc}>{ TextBody }</Text>
-
-                    <TouchableOpacity style={[styles.Button, styles[Type]]} onPress={Callback}>
-                        <Text style={styles.TextButton}>{ ButtonText }</Text>
-                    </TouchableOpacity>
-                </View>
-            </Animated.View>
-        </Animated.View>
-    )
-}
 
 Popup.defaultProps = {
     Title: 'Upload complete',
     Type: 'Success',
     TextBody: 'Congrats! Your upload successfully done',
+    Button: true,
     ButtonText: 'Ok',
-    Callback: () => hide(),
-    Background: 'rgba(0, 0, 0, 0.5)'
+    Callback: () => alert('Callback props'),
+    Background: 'rgba(0, 0, 0, 0.5)',
+    Visible: false,
+    Timing: 5000,
+    AutoClose: false
 }
 
 Popup.propTypes = {
     Title: PropTypes.string,
     Type: PropTypes.oneOf(['Success', 'Error', 'Warning']),
     TextBody: PropTypes.string,
+    Button: PropTypes.bool,
     ButtonText: PropTypes.string,
     Callback: PropTypes.func,
-    Background: PropTypes.string
+    Background: PropTypes.string,
+    Visible: PropTypes.bool,
+    Timing: PropTypes.number,
+    AutoClose: PropTypes.bool
 }
 
 const styles = StyleSheet.create({
     Container: {
         position: 'absolute',
         zIndex: 9,
-        width: '100%',
-        height: '100%',
+        width: WIDTH,
+        height: HEIGHT,
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        alignItems: 'center'
+        alignItems: 'center',
+        top: 0,
+        left: 0
     },  
     Message: {
         maxWidth: 300,
@@ -212,4 +244,6 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Popup
+
+
+export { Popup }
