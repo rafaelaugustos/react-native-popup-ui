@@ -5,6 +5,6 @@ A simple and fully customizable React Native component that implements a popup U
 * Function to close automatically
 * Receives callback prop to set button action
 
-Example One             |  Example Two
-:-------------------------:|:-------------------------:
+Example One             |  Example Two             |  Example Three
+:-------------------------:|:-------------------------:|:-------------------------:
 ![](assets/popup-ui_1.gif) [examples/App.js](examples/App.js)| ![](assets/popup-ui_2.gif) [examples/App.js](examples/App.js) | ![](assets/popup-ui_3.gif) [examples/App.js](examples/App.js)
