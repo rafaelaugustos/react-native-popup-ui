@@ -246,4 +246,4 @@ const styles = StyleSheet.create({
 
 
 
-export { Popup }
+export default Popup
