@@ -37,6 +37,82 @@ Simply declare the tag `<Popup />` in its component.
 </View>
 ```
 
+### Popup Type Usage
+Popup contains a type-customization scheme `Type` props.
+
+Example success usage:
+
+```
+return(
+    <View style={{flex: 1}}>
+        <Popup
+            Type="Success"
+        />
+    </View>
+)
+```
+
+Example warning usage:
+
+```
+return(
+    <View style={{flex: 1}}>
+        <Popup
+            Type="Warning"
+        />
+    </View>
+)
+```
+
+Example error usage:
+
+```
+return(
+    <View style={{flex: 1}}>
+        <Popup
+            Type="Error"
+        />
+    </View>
+)
+```
+
+### Popup Style Background
+Popup contains a customization in `Background` props.
+
+Example usage:
+
+```
+return(
+    <View style={{flex: 1}}>
+        <Popup
+            Background="red"
+        />
+    </View>
+)
+```
+
+### Popup Callback Function
+Popup contains a callback function in button popup `Callback` props.
+
+Example usage:
+
+```
+render(){
+    state = {
+        visible: true
+    }
+
+    return(
+        <View style={{flex: 1}}>
+            <Popup
+                Visible={this.state.visible}
+                Callback={() => this.setState({ visible: false })}
+            />
+        </View>
+    )
+}
+```
+
 ## Documentation
 
 ### Popup Component
