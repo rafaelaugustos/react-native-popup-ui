@@ -1,3 +1,3 @@
-import Popup from './src/PopupUi/Popup'
+import Popup from './src/popup'
 
 export { Popup }
