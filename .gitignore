@@ -1,6 +1,7 @@
 # Logs
 *.log
 npm-debug.log
+.DS_Store
 
 # Runtime data
 tmp
