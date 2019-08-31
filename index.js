@@ -1,3 +1,7 @@
-import Popup from './src/PopupUi/Popup'
+import Root from './src/basic/Root';
+import Popup from './src/basic/PopupUi/Popup';
 
-export { Popup }
+export {
+  Root, 
+  Popup
+}
