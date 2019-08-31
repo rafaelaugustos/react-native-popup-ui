@@ -15,7 +15,7 @@ class App extends Component {
                 button: false,
                 textBody: 'Congrats! Your upload successfully done', 
                 buttontext: 'Ok',
-                callback: () => Popup.hide()
+                autoClose: true
               })
             }
           >
