@@ -37,7 +37,7 @@ class Popup extends Component {
 			title: config.title,
 			type: config.type,
 			textBody: config.textBody,
-			button: config.button || true,
+			button: config.button !== false && true,
 			buttonText: config.buttonText || 'Ok',
 			callback: config.callback !== undefined ? config.callback : this.defaultCallback(),
 			background: config.background || 'rgba(0, 0, 0, 0.5)',
@@ -137,9 +137,9 @@ class Popup extends Component {
 						<Text style={styles.Desc}>{ textBody }</Text>
 						{
 							button && 
-							<TouchableOpacity style={[styles.Button, styles[type]]} onPress={callback}>
-								<Text style={styles.TextButton}>{ buttonText }</Text>
-							</TouchableOpacity>
+								<TouchableOpacity style={[styles.Button, styles[type]]} onPress={callback}>
+									<Text style={styles.TextButton}>{ buttonText }</Text>
+								</TouchableOpacity>
 						}
 					</View>
 				</Animated.View>
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
 	Message: {
 		maxWidth: 300,
 		width: 230,
-		height: 300,
+		minHeight: 220,
 		backgroundColor: '#fff',
 		borderRadius: 30,
 		alignItems: 'center',
