@@ -21,27 +21,16 @@ class Popup extends Component {
 		positionPopup: new Animated.Value(HEIGHT),
 	}
 
-	componentWillReceiveProps(nextProps){
-		if(nextProps.Visible){
-			this.start()
-		}else{
-			this.hide()
-		}
-
-		return false
-	}
-
 	start({ ...config }){
-		console.log(config);
 		this.setState({
 			title: config.title,
 			type: config.type,
 			textBody: config.textBody,
-			button: config.button !== false && true,
+			button: config.button || true,
 			buttonText: config.buttonText || 'Ok',
 			callback: config.callback !== undefined ? config.callback : this.defaultCallback(),
 			background: config.background || 'rgba(0, 0, 0, 0.5)',
-			timing: config.timing || 5000,
+			timing: config.timing,
 			autoClose: config.autoClose || false
 		});
 
@@ -59,12 +48,13 @@ class Popup extends Component {
 				bounciness: 15,
 				useNativeDriver: true
 			})
-		]).start()
+		]).start();
 
-		if(this.props.AutoClose){
+		if(config.autoClose && config.timing !== 0) {
+			const duration = config.timing > 0 ? config.timing : 5000;
 			setTimeout(() => {
-				this.hide()
-			}, this.props.Timing)
+				this.hidePopup();
+			}, duration);
 		}
 	}
 
@@ -83,7 +73,7 @@ class Popup extends Component {
 				toValue: HEIGHT,
 				duration: 100
 			})
-		]).start()
+		]).start();
 	}
 
 	defaultCallback() {
@@ -93,7 +83,7 @@ class Popup extends Component {
 			[
 				{ text: 'Ok', onPress: () => this.hidePopup() }
 			]
-		)
+		);
 	}
 
 	handleImage(type){
@@ -137,9 +127,9 @@ class Popup extends Component {
 						<Text style={styles.Desc}>{ textBody }</Text>
 						{
 							button && 
-								<TouchableOpacity style={[styles.Button, styles[type]]} onPress={callback}>
-									<Text style={styles.TextButton}>{ buttonText }</Text>
-								</TouchableOpacity>
+							<TouchableOpacity style={[styles.Button, styles[type]]} onPress={callback}>
+								<Text style={styles.TextButton}>{ buttonText }</Text>
+							</TouchableOpacity>
 						}
 					</View>
 				</Animated.View>
@@ -162,7 +152,7 @@ const styles = StyleSheet.create({
 	Message: {
 		maxWidth: 300,
 		width: 230,
-		minHeight: 220,
+		height: 300,
 		backgroundColor: '#fff',
 		borderRadius: 30,
 		alignItems: 'center',
