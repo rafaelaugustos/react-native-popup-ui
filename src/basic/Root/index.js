@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import { View, ViewPropTypes } from 'react-native';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import { View, ViewPropTypes } from 'react-native'
+import PropTypes from 'prop-types'
 
-import PopupUi from '../PopupUi/Popup';
+import Popup from '../Popup'
+
 
 class Root extends Component {
   render() {
@@ -13,13 +14,13 @@ class Root extends Component {
         {...this.props}
       >
         {this.props.children}
-        <PopupUi
+        <Popup
           ref={c => {
-            if (c) PopupUi.popupInstance = c;
+            if (c) Popup.popupInstance = c
           }}
         />
       </View>
-    );
+    )
   }
 }
 
@@ -30,6 +31,6 @@ Root.propTypes = {
     PropTypes.number,
     PropTypes.array
   ])
-};
+}
 
-export default Root;
+export default Root

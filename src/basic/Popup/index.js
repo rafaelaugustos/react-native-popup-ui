@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image, Animated, Dimensions, Alert } from 'react-native';
+import React, { Component } from 'react'
+import { View, Text, TouchableOpacity, StyleSheet, Image, Animated, Dimensions, Alert } from 'react-native'
 
-const WIDTH = Dimensions.get('window').width;
-const HEIGHT = Dimensions.get('window').height;
+const WIDTH = Dimensions.get('window').width
+const HEIGHT = Dimensions.get('window').height
 
 class Popup extends Component {
-	static popupInstance;
+	static popupInstance
 
 	static show({ ...config }) {
-		this.popupInstance.start(config);
+		this.popupInstance.start(config)
 	}
 
 	static hide() {
-		this.popupInstance.hidePopup();
+		this.popupInstance.hidePopup()
 	}
 
 	state = {
@@ -32,7 +32,7 @@ class Popup extends Component {
 			background: config.background || 'rgba(0, 0, 0, 0.5)',
 			timing: config.timing,
 			autoClose: config.autoClose || false
-		});
+		})
 
 		Animated.sequence([
 			Animated.timing(this.state.positionView, {
@@ -48,13 +48,13 @@ class Popup extends Component {
 				bounciness: 15,
 				useNativeDriver: true
 			})
-		]).start();
+		]).start()
 
 		if(config.autoClose && config.timing !== 0) {
-			const duration = config.timing > 0 ? config.timing : 5000;
+			const duration = config.timing > 0 ? config.timing : 5000
 			setTimeout(() => {
-				this.hidePopup();
-			}, duration);
+				this.hidePopup()
+			}, duration)
 		}
 	}
 
@@ -73,7 +73,7 @@ class Popup extends Component {
 				toValue: HEIGHT,
 				duration: 100
 			})
-		]).start();
+		]).start()
 	}
 
 	defaultCallback() {
@@ -83,22 +83,22 @@ class Popup extends Component {
 			[
 				{ text: 'Ok', onPress: () => this.hidePopup() }
 			]
-		);
+		)
 	}
 
 	handleImage(type){
 		switch(type){
 			case 'Success':
-				return require('../../assets/Success.png');
+				return require('../../assets/Success.png')
 			case 'Danger':
-				return require('../../assets/Error.png');
+				return require('../../assets/Error.png')
 			case 'Warning':
-				return require('../../assets/Warning.png');
+				return require('../../assets/Warning.png')
 		}
 	}
 
 	render(){
-		const { title, type, textBody, button, buttonText, callback, background } = this.state;
+		const { title, type, textBody, button, buttonText, callback, background } = this.state
 
 		return(
 			<Animated.View 
@@ -134,7 +134,7 @@ class Popup extends Component {
 					</View>
 				</Animated.View>
 			</Animated.View>
-		);
+		)
 	}
 }
 
@@ -231,6 +231,6 @@ const styles = StyleSheet.create({
 		shadowRadius: 6.68,
 		elevation: 11
 	}
-});
+})
 
-export default Popup;
+export default Popup
