@@ -1,5 +1,5 @@
-import Root from './src/basic/Root';
-import Popup from './src/basic/PopupUi/Popup';
+import Root from './src/basic/Root'
+import Popup from './src/basic/Popup'
 
 export {
   Root, 

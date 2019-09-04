@@ -1,6 +1,6 @@
 {
   "name": "popup-ui",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RafaelAugustoS/popup-ui-rn.git"
+    "url": "git+https://github.com/RafaelAugustoS/react-native-popup-ui.git"
   },
   "keywords": [
     "react-native",

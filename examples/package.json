@@ -7,7 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "popup-ui": "JulioAugustoS/react-native-popup-ui#root_component",
+    "popup-ui": "file:../popup-ui-1.0.4.tgz",
     "react": "16.8.3",
     "react-native": "0.59.8"
   },
