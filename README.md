@@ -6,9 +6,18 @@ A simple and fully customizable React Native component that implements a popup U
 - Function to close automatically
 - Receives callback prop to set button action
 
+## Example popup
+
 |                          Example One                          |                          Example Two                          |                         Example Three                         |
 | :-----------------------------------------------------------: | :-----------------------------------------------------------: | :-----------------------------------------------------------: |
 | ![](assets/popup-ui_1.gif) [examples/App.js](examples/App.js) | ![](assets/popup-ui_2.gif) [examples/App.js](examples/App.js) | ![](assets/popup-ui_3.gif) [examples/App.js](examples/App.js) |
+
+
+## Example toast
+
+|                          Example One                          |                          Example Two                          |                         Example Three                         |
+| :-----------------------------------------------------------: | :-----------------------------------------------------------: | :-----------------------------------------------------------: |
+| ![](assets/toast-01.gif) [examples/App.js](examples/App.js) | ![](assets/toast-02.gif) [examples/App.js](examples/App.js) | ![](assets/toast-03.gif) [examples/App.js](examples/App.js) |
 
 ## Installation
 
@@ -31,7 +40,7 @@ import { View, TouchableOpacity, Text } from 'react-native'
 import { Root, Popup } from 'popup-ui'
 ```
 
-Simply declare the tag `<Popup />` in its component.
+Simply declare the method in your event `Popup.show({...})` in its component.
 
 ```
 <Root>
@@ -52,6 +61,27 @@ Simply declare the tag `<Popup />` in its component.
         </TouchableOpacity>
     </View>
 </Root>
+```
+
+You can also use the `Toast` component.
+
+```
+    // Is necessary make the import to Toast (import { Root, Toast } from 'popup-ui')
+    <Root>
+        <View>
+            <TouchableOpacity
+                onPress={() => 
+                    Toast.show({
+                        title: 'User created',
+                        text: 'Your user was successfully created, use the app now.',
+                        color: '#2ecc71'
+                    })
+                }
+            >
+                <Text>Call Toast</Text>
+            </TouchableOpacity>
+        </View>
+    </Root>
 ```
 
 ### Popup Type Usage
@@ -106,6 +136,7 @@ Popup.show({
 })
 ```
 
+
 ## Documentation
 
 ### Popup Component
@@ -121,6 +152,17 @@ Popup.show({
 | background | Sets the backgroundColor                        | rgba(0, 0, 0, 0.5) | String |
 | timing     | Sets the time for the popup to close by itself  | 5000               | Number |
 | autoclose  | sets whether the popup will close automatically | false              | Bool   |
+
+
+### Toast Component
+
+| Name       | Description                                     | Default            | Type      |
+| ---------- | ----------------------------------------------- | ------------------ | --------- |
+| title      | Sets the main toast title                       |                    | String    |
+| text       | Defines the text to toast                       |                    | String    |
+| color      | Defines the color to title, border and iconC    | #e1e1e1            | String    |
+| timing     | Define your timing to close toast               | 6s                 | Int       |
+| icon       | Choose your the best icon to toast              |                    | Component |
 
 ## Contributing
 

@@ -3,6 +3,7 @@ import { View, ViewPropTypes } from 'react-native'
 import PropTypes from 'prop-types'
 
 import Popup from '../Popup'
+import Toast from '../Toast'
 
 
 class Root extends Component {
@@ -17,6 +18,12 @@ class Root extends Component {
         <Popup
           ref={c => {
             if (c) Popup.popupInstance = c
+          }}
+        />
+        
+        <Toast 
+          ref={c => {
+            if (c) Toast.toastInstance = c
           }}
         />
       </View>
