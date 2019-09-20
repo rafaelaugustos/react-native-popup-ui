@@ -3,15 +3,15 @@ import { View, Animated, Text, StyleSheet, Image, Dimensions } from 'react-nativ
 
 const { height } = Dimensions.get('window')
 
-class Feedback extends Component {
-    static popupInstance
+class Toast extends Component {
+    static toastInstance
 
     static show({ ...config }) {
-		this.popupInstance.start(config)
+		this.toastInstance.start(config)
     }
     
     static hide() {
-		this.popupInstance.hidePopup()
+		this.toastInstance.hideToast()
     }
     
     state = {
@@ -19,40 +19,54 @@ class Feedback extends Component {
     }
 
     start({ ...config }){
+        this.setState({
+            title: config.title,
+            text: config.text,
+            color: config.color,
+            icon: config.icon,
+            timing: config.timing
+        })
+
         Animated.spring(this.state.toast, {
             toValue: height - 130,
             bounciness: 15,
             useNativeDriver: true
         }).start()
+
+        const duration = config.timing > 0 ? config.timing : 5000
+
+        setTimeout(() => {
+            this.hideToast()
+        }, duration)
     }
 
-    
-    componentDidMount(){
-        setTimeout(() => {
-            this.start()
-        }, 3000)
+    hideToast(){
+        Animated.timing(this.state.toast, {
+            toValue: height,
+            duration: 300,
+            useNativeDriver: true
+        }).start()
     }
 
     render(){
+        const { title, text, icon, color } = this.state
         return(
             <Animated.View 
+                ref={c => this._root = c}
                 style={[styles.toast, {
                     transform: [
                         { translateY: this.state.toast }
                     ]
                 }]}
             >
-                <View style={styles.timing} />
+                <View style={[styles.timing, { backgroundColor: color }]} />
                 <View style={styles.content}>
-                    <Text style={styles.title}>Conexão restabelecida</Text>
-                    <Text style={styles.subtitle}>YAY! Sua conexão foi reestabelecida, agora você pode sincronizar suas informações.</Text>
+                    <Text style={[styles.title, { color }]}>{ title }</Text>
+                    <Text style={styles.subtitle}>{ text }</Text>
                 </View>
 
-                <View style={styles.iconStatus}>
-                    <Image
-                        source={require('./tick.png')}
-                        style={styles.img}
-                    />
+                <View style={[styles.iconStatus, { backgroundColor: color }]}>
+                    { icon }
                 </View>
             </Animated.View>
         )
@@ -85,7 +99,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 10,
         height: 2,
         width: '100%',
-        backgroundColor: '#55F89B',
+        backgroundColor: '#f1f1f1',
         position: 'absolute',
         top: 0
     },  
@@ -95,7 +109,7 @@ const styles = StyleSheet.create({
         paddingRight: 20
     },  
     title: {
-        color: '#55F89B',
+        color: '#f1f1f1',
         fontWeight: '600',
         fontSize: 16
     },
@@ -112,7 +126,7 @@ const styles = StyleSheet.create({
     iconStatus: {
         width: 40,
         height: 40,
-        backgroundColor: '#55F89B',
+        backgroundColor: '#f1f1f1',
         borderRadius: 50,
         position: 'absolute',
         right: -20,
@@ -121,4 +135,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Feedback
+export default Toast

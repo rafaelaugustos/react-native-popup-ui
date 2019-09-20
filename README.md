@@ -31,7 +31,7 @@ import { View, TouchableOpacity, Text } from 'react-native'
 import { Root, Popup } from 'popup-ui'
 ```
 
-Simply declare the tag `<Popup />` in its component.
+Simply declare the method in your event `Popup.show({...})` in its component.
 
 ```
 <Root>
