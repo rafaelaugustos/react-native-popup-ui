@@ -13,6 +13,7 @@ class App extends Component {
                 title: 'User created',
                 text: 'Your user was successfully created, use the app now.',
                 color: '#2ecc71',
+                timing: 2000,
                 icon: <Image source={require('./assets/tick.png')} style={{ width: 25, height: 25 }} resizeMode="contain" />
               })
             }
@@ -26,6 +27,7 @@ class App extends Component {
                 title: 'User deleted',
                 text: 'Your account has been deleted, you will no longer be able to access the app.',
                 color: '#e74c3c',
+                timing: 2000,
                 icon: <Image source={require('./assets/close.png')} style={{ width: 15, height: 15 }} resizeMode="contain" />
               })
             }
@@ -39,6 +41,7 @@ class App extends Component {
                 title: 'Profile edited',
                 text: 'Your profile has been edited, you can now see your new information.',
                 color: '#f39c12',
+                timing: 2000,
                 icon: <Image source={require('./assets/warning.png')} style={{ width: 25, height: 25 }} resizeMode="contain" />
               })
             }
