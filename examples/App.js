@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import { Root, Popup } from 'popup-ui';
+import Toast from './components/Toast'
 
 class App extends Component {
   render(){    
@@ -48,6 +49,7 @@ class App extends Component {
             <Text>Danger</Text>
           </TouchableOpacity>
         </View>
+        <Toast />
       </Root>
     );
   }
