@@ -173,7 +173,7 @@ Pull requests are always welcome! Feel free to open a new GitHub issue for any c
 Rafael Augusto | [https://linkedin.com/in/rafaelaugustos/](https://linkedin.com/in/rafaelaugustos/)
 
 ## Roadmap
-- Toast
+- <s>Toast</s>
 - Alert/Confirm
 
 
