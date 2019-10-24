@@ -65,7 +65,7 @@ class Toast extends Component {
                     <Text style={styles.subtitle}>{ text }</Text>
                 </View>
 
-                <View style={[styles.iconStatus, { backgroundColor: color }]}>
+                <View style={[styles.iconStatus, { backgroundColor: color || 'transparent' }]}>
                     { icon }
                 </View>
             </Animated.View>

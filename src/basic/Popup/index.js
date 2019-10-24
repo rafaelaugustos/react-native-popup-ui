@@ -104,7 +104,7 @@ class Popup extends Component {
 			<Animated.View 
 				ref={c => this._root = c}
 				style={[styles.Container, {
-					backgroundColor: background,
+					backgroundColor: background || 'transparent',
 					opacity: this.state.opacity,
 					transform: [
 						{ translateY: this.state.positionView }
