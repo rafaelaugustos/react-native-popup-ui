@@ -59,7 +59,7 @@ class Toast extends Component {
                     ]
                 }]}
             >
-                <View style={[styles.timing, { backgroundColor: color }]} />
+                <View style={[styles.timing, { backgroundColor: color || 'transparent' }]} />
                 <View style={styles.content}>
                     <Text style={[styles.title, { color }]}>{ title }</Text>
                     <Text style={styles.subtitle}>{ text }</Text>
