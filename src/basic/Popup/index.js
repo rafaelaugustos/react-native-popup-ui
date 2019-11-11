@@ -19,6 +19,7 @@ class Popup extends Component {
 		positionView: new Animated.Value(HEIGHT),
 		opacity: new Animated.Value(0),
 		positionPopup: new Animated.Value(HEIGHT),
+		popupHeight: 0
 	}
 
 	start({ ...config }){
@@ -44,7 +45,7 @@ class Popup extends Component {
 				duration: 300
 			}),
 			Animated.spring(this.state.positionPopup, {
-				toValue: HEIGHT / 3,
+				toValue: (HEIGHT / 2) - (this.state.popupHeight / 2),
 				bounciness: 15,
 				useNativeDriver: true
 			})
@@ -107,11 +108,16 @@ class Popup extends Component {
 						{ translateY: this.state.positionView }
 					]
 				}]}>
-				<Animated.View style={[styles.Message, {
-					transform: [
-						{ translateY: this.state.positionPopup }
-					] 
-				}]}
+				<Animated.View 
+					onLayout={event => {
+						this.setState({ popupHeight: event.nativeEvent.layout.height })
+					}}
+					style={[styles.Message, {
+						transform: [
+							{ translateY: this.state.positionPopup }
+						] 
+					}]}
+				
 			>
 				<View style={styles.Header} />
 					<Image 
@@ -149,7 +155,7 @@ const styles = StyleSheet.create({
 	Message: {
 		maxWidth: 300,
 		width: 230,
-		height: 300,
+		minHeight: 300,
 		backgroundColor: '#fff',
 		borderRadius: 30,
 		alignItems: 'center',

@@ -1,6 +1,6 @@
 {
   "name": "popup-ui",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -28,5 +28,6 @@
   "license": "ISC",
   "devDependencies": {
     "metro-react-native-babel-preset": "^0.54.0"
-  }
+  },
+  "dependencies": {}
 }

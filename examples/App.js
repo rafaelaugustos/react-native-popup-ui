@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Text, Image } from 'react-native';
-import { Root, Popup, Toast } from 'popup-ui';
+import { Root, Toast, Popup } from 'popup-ui'
 
 class App extends Component {
   render(){    
     return(
       <Root>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <TouchableOpacity
             onPress={() => 
               Toast.show({
@@ -83,7 +83,7 @@ class App extends Component {
               Popup.show({ 
                 type: 'Danger', 
                 title: 'Upload failed',  
-                textBody: 'Sorry! Your upload failed, please try again', 
+                textBody: 'Sorry! Your upload failed, please try again Sorry! Your upload failed, please try again Sorry! Your upload failed, please try again Sorry! Your upload failed, please try again Sorry! Your upload failed, please try again Sorry! Your upload failed, please try again', 
                 buttontext: 'Try again',
                 callback: () => Popup.hide()
               })
