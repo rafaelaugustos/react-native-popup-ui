@@ -175,6 +175,7 @@ Rafael Augusto | [https://linkedin.com/in/rafaelaugustos/](https://linkedin.com/
 ## Roadmap
 - <s>Toast</s>
 - Alert/Confirm
+- Create a function to close toast with gesture
 
 
 ## License
