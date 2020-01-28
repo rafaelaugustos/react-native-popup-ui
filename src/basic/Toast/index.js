@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Animated, Text, StyleSheet, Image, Dimensions } from 'react-native'
 
-const { height } = Dimensions.get('window')
+const { height } = Dimensions.get('screen')
 
 class Toast extends Component {
     static toastInstance
