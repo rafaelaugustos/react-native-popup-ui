@@ -6,7 +6,7 @@ class App extends Component {
   render(){    
     return(
       <Root>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'red' }}>
           <TouchableOpacity
             onPress={() => 
               Toast.show({

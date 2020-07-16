@@ -82,8 +82,6 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         minHeight: 90,
         shadowColor: "#ccc",
-        borderWidth: 1,
-        borderColor: '#f5f5f5',
         alignItems: 'center',
         shadowOffset: {
             width: 0,
@@ -95,9 +93,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     timing: {
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
-        height: 2,
+        borderRadius: 10,
+        height: 5,
         width: '100%',
         backgroundColor: '#f1f1f1',
         position: 'absolute',

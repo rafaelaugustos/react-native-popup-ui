@@ -26,6 +26,7 @@ class Popup extends Component {
 		this.setState({
 			title: config.title,
 			type: config.type,
+			icon: config.icon || false,
 			textBody: config.textBody,
 			button: config.button || true,
 			buttonText: config.buttonText || 'Ok',
@@ -120,11 +121,14 @@ class Popup extends Component {
 				
 			>
 				<View style={styles.Header} />
-					<Image 
-						source={this.handleImage(type)}
-						resizeMode="contain"
-						style={styles.Image}
-					/>
+					{
+						this.state.icon ? ( this.state.icon ) :
+						<Image 
+							source={this.handleImage(type)}
+							resizeMode="contain"
+							style={styles.Image}
+						/>
+					}
 					<View style={styles.Content}>
 						<Text style={styles.Title}>{ title }</Text>
 						<Text style={styles.Desc}>{ textBody }</Text>
