@@ -50,6 +50,20 @@ class App extends Component {
           </TouchableOpacity>
 
 
+          <TouchableOpacity 
+            onPress={() => 
+              Popup.show({ 
+                type: 'Success', 
+                title: 'Upload complete',
+                button: true,
+                textBody: 'Congrats! Your upload successfully done', 
+                buttontext: 'Ok',
+                icon: <Image source={{ uri: 'https://www.acejundiai.com.br/wp-content/uploads/2018/12/success-icon-09.png' }} style={{ width: 50, height: 50 }} resizeMode="contain"  />
+              })
+            }
+          >
+            <Text>Popup with Component Icon</Text>
+          </TouchableOpacity>
 
           <TouchableOpacity 
             onPress={() => 
