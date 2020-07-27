@@ -69,11 +69,13 @@ class Popup extends Component {
 			}),
 			Animated.timing(this.state.opacity, {
 				toValue: 0,
-				duration: 300
+				duration: 300,
+				useNativeDriver: true
 			}),
 			Animated.timing(this.state.positionView, {
 				toValue: HEIGHT,
-				duration: 100
+				duration: 100,
+				useNativeDriver: true
 			})
 		]).start()
 	}
