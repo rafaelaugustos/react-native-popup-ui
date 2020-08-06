@@ -39,11 +39,13 @@ class Popup extends Component {
 		Animated.sequence([
 			Animated.timing(this.state.positionView, {
 				toValue: 0,
-				duration: 100
+				duration: 100,
+        useNativeDriver: false
 			}),
 			Animated.timing(this.state.opacity, {
 				toValue: 1,
-				duration: 300
+				duration: 300,
+        useNativeDriver: false
 			}),
 			Animated.spring(this.state.positionPopup, {
 				toValue: (HEIGHT / 2) - (this.state.popupHeight / 2),
@@ -70,12 +72,12 @@ class Popup extends Component {
 			Animated.timing(this.state.opacity, {
 				toValue: 0,
 				duration: 300,
-				useNativeDriver: true
+				useNativeDriver: false
 			}),
 			Animated.timing(this.state.positionView, {
 				toValue: HEIGHT,
 				duration: 100,
-				useNativeDriver: true
+				useNativeDriver: false
 			})
 		]).start()
 	}
