@@ -23,6 +23,7 @@ class Popup extends Component {
 	}
 
 	start({ ...config }){
+		console.log(config.buttonText)
 		this.setState({
 			title: config.title,
 			type: config.type,
