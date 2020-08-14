@@ -84,8 +84,8 @@ class Popup extends Component {
 
 	defaultCallback() {
 		return Alert.alert(
-			//'Callback!',
-			//'Callback complete!',
+			'Callback!',
+			'Callback complete!',
 			[
 				{ text: 'Ok', onPress: () => this.hidePopup() }
 			]
