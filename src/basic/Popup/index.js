@@ -102,7 +102,15 @@ class Popup extends Component {
 
 	render(){
 		const { title, type, textBody, button, buttonText, callback, background } = this.state
-
+		let el = null;
+		if (button) {
+			el = <TouchableOpacity style={[styles.Button, styles[type]]} onPress={callback}>
+					<Text style={styles.TextButton}>{ buttonText }</Text>
+				 </TouchableOpacity>
+		}
+		else {
+			el = <Text></Text>
+		}
 		return(
 			<Animated.View 
 				ref={c => this._root = c}
@@ -137,10 +145,10 @@ class Popup extends Component {
 						<Text style={styles.Title}>{ title }</Text>
 						<Text style={styles.Desc}>{ textBody }</Text>
 						{
-							button && 
-							<TouchableOpacity style={[styles.Button, styles[type]]} onPress={callback}>
-								<Text style={styles.TextButton}>{ buttonText }</Text>
-							</TouchableOpacity>
+							el 
+							// <TouchableOpacity style={[styles.Button, styles[type]]} onPress={callback}>
+							// 	<Text style={styles.TextButton}>{ buttonText }</Text>
+							// </TouchableOpacity>
 						}
 					</View>
 				</Animated.View>
