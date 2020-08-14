@@ -87,7 +87,7 @@ class Popup extends Component {
 			'Callback!',
 			'Callback complete!',
 			[
-				{ text: 'Ok', onPress: () => this.hidePopup() }
+				{ text: this.state.buttonText, onPress: () => this.hidePopup() }
 			]
 		)
 	}
