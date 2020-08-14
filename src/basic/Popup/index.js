@@ -23,7 +23,6 @@ class Popup extends Component {
 	}
 
 	start({ ...config }){
-		console.log(config.buttonText)
 		this.setState({
 			title: config.title,
 			type: config.type,
@@ -88,7 +87,7 @@ class Popup extends Component {
 			'Callback!',
 			'Callback complete!',
 			[
-				{ text: this.state.buttonText, onPress: () => this.hidePopup() }
+				{ text: 'Ok', onPress: () => this.hidePopup() }
 			]
 		)
 	}
