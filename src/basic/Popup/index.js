@@ -103,8 +103,7 @@ class Popup extends Component {
 	render(){
 		const { title, type, textBody, button, buttonText, callback, background } = this.state
 		let el = null;
-		console.log(button)
-		if (button) {
+		if (this.state.button) {
 			el = <TouchableOpacity style={[styles.Button, styles[type]]} onPress={callback}>
 					<Text style={styles.TextButton}>{ buttonText }</Text>
 				 </TouchableOpacity>
