@@ -144,12 +144,7 @@ class Popup extends Component {
 					<View style={styles.Content}>
 						<Text style={styles.Title}>{ title }</Text>
 						<Text style={styles.Desc}>{ textBody }</Text>
-						{
-							el 
-							// <TouchableOpacity style={[styles.Button, styles[type]]} onPress={callback}>
-							// 	<Text style={styles.TextButton}>{ buttonText }</Text>
-							// </TouchableOpacity>
-						}
+						{el}
 					</View>
 				</Animated.View>
 			</Animated.View>
