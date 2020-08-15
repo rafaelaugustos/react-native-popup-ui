@@ -28,7 +28,7 @@ class Popup extends Component {
 			type: config.type,
 			icon: config.icon || false,
 			textBody: config.textBody,
-			button: config.button || true,
+			button: config.button !== undefined ? config.button : true,
 			buttonText: config.buttonText || 'Ok',
 			callback: config.callback !== undefined ? config.callback : this.defaultCallback(),
 			background: config.background || 'rgba(0, 0, 0, 0.5)',
