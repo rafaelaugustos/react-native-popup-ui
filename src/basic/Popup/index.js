@@ -26,14 +26,14 @@ class Popup extends Component {
 		this.setState({
 			title: config.title,
 			type: config.type,
-			icon: config.icon || false,
+			icon: config.icon !== undefined ? config.icon : false,
 			textBody: config.textBody,
-			button: config.button || true,
+			button: config.button !== undefined ? config.button : true,
 			buttonText: config.buttonText || 'Ok',
 			callback: config.callback !== undefined ? config.callback : this.defaultCallback(),
 			background: config.background || 'rgba(0, 0, 0, 0.5)',
 			timing: config.timing,
-			autoClose: config.autoClose || false
+			autoClose: config.autoClose !== undefined ? config.autoClose : false
 		})
 
 		Animated.sequence([
@@ -102,7 +102,15 @@ class Popup extends Component {
 
 	render(){
 		const { title, type, textBody, button, buttonText, callback, background } = this.state
-
+		let el = null;
+		if (this.state.button) {
+			el = <TouchableOpacity style={[styles.Button, styles[type]]} onPress={callback}>
+					<Text style={styles.TextButton}>{ buttonText }</Text>
+				 </TouchableOpacity>
+		}
+		else {
+			el = <Text></Text>
+		}
 		return(
 			<Animated.View 
 				ref={c => this._root = c}
@@ -136,12 +144,7 @@ class Popup extends Component {
 					<View style={styles.Content}>
 						<Text style={styles.Title}>{ title }</Text>
 						<Text style={styles.Desc}>{ textBody }</Text>
-						{
-							button && 
-							<TouchableOpacity style={[styles.Button, styles[type]]} onPress={callback}>
-								<Text style={styles.TextButton}>{ buttonText }</Text>
-							</TouchableOpacity>
-						}
+						{el}
 					</View>
 				</Animated.View>
 			</Animated.View>
