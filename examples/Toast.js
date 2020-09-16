@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from 'react';
 import {
   View,
   Animated,
@@ -6,14 +6,14 @@ import {
   StyleSheet,
   Image,
   Dimensions,
-} from "react-native";
+} from 'react-native';
 
-const { width, height } = Dimensions.get("window");
+const {width, height} = Dimensions.get('window');
 
 class Toast extends Component {
   static toastInstance;
 
-  static show({ ...config }) {
+  static show({...config}) {
     this.toastInstance.start(config);
   }
 
@@ -28,7 +28,7 @@ class Toast extends Component {
     // currentPercentage: this.getPercentage(90, width),
   };
 
-  start({ ...config }) {
+  start({...config}) {
     this.setState({
       title: config.title,
       text: config.text,
@@ -62,7 +62,7 @@ class Toast extends Component {
       if (this.state.currentTime >= 5) {
         clearInterval(interval);
       } else {
-        this.setState({ currentTime: this.state.currentTime + 1 });
+        this.setState({currentTime: this.state.currentTime + 1});
         this.runTiming();
       }
     }, 1000);
@@ -89,18 +89,17 @@ class Toast extends Component {
   }
 
   render() {
-    const { title, text, icon, color } = this.state;
+    const {title, text, icon, color} = this.state;
     return (
       <Animated.View
-        ref={(c) => (this._root = c)}
+        ref={c => (this._root = c)}
         style={[
           styles.toast,
           {
             backgroundColor: color,
-            transform: [{ translateY: this.state.toast }],
+            transform: [{translateY: this.state.toast}],
           },
-        ]}
-      >
+        ]}>
         {icon && <View style={[styles.iconStatus]}>{icon}</View>}
         <View style={styles.content}>
           <Text style={[styles.title]}>{title}</Text>
@@ -122,13 +121,13 @@ class Toast extends Component {
 
 const styles = StyleSheet.create({
   toast: {
-    position: "absolute",
-    width: "90%",
-    alignSelf: "center",
+    position: 'absolute',
+    width: '90%',
+    alignSelf: 'center',
     borderRadius: 5,
     minHeight: 100,
-    shadowColor: "#ccc",
-    alignItems: "center",
+    shadowColor: '#ccc',
+    alignItems: 'center',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -136,15 +135,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   timing: {
     borderBottomRightRadius: 5,
     borderBottomLeftRadius: 5,
     height: 10,
-    width: "100%",
-    backgroundColor: "rgba(255, 255, 255, 0.5)",
-    position: "absolute",
+    width: '100%',
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    position: 'absolute',
     bottom: 0,
     left: 0,
   },
@@ -154,19 +153,19 @@ const styles = StyleSheet.create({
     paddingRight: 20,
   },
   title: {
-    color: "#fff",
-    fontWeight: "bold",
+    color: '#fff',
+    fontWeight: 'bold',
     fontSize: 16,
   },
   subtitle: {
     marginTop: 5,
-    fontWeight: "300",
+    fontWeight: '300',
     fontSize: 13,
-    color: "#fff",
-    fontWeight: "400",
+    color: '#fff',
+    fontWeight: '400',
   },
   img: {
-    resizeMode: "contain",
+    resizeMode: 'contain',
     width: 20,
     height: 20,
   },
@@ -176,8 +175,8 @@ const styles = StyleSheet.create({
     // backgroundColor: '#fff',
     borderRadius: 50,
     marginLeft: 20,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
