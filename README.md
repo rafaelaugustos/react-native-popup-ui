@@ -52,7 +52,7 @@ Simply declare the method in your event `Popup.show({...})` in its component.
                 title: 'Upload complete',
                 button: false,
                 textBody: 'Congrats! Your upload successfully done',
-                buttontext: 'Ok',
+                buttonText: 'Ok',
                 callback: () => Popup.hide()
               })
             }
