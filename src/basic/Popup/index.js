@@ -22,7 +22,7 @@ class Popup extends Component {
 		popupHeight: 0
 	}
 
-	start({ ...config }){
+	start({ ...config }) {
 		this.setState({
 			title: config.title,
 			type: config.type,
@@ -40,12 +40,12 @@ class Popup extends Component {
 			Animated.timing(this.state.positionView, {
 				toValue: 0,
 				duration: 100,
-        useNativeDriver: false
+				useNativeDriver: false
 			}),
 			Animated.timing(this.state.opacity, {
 				toValue: 1,
 				duration: 300,
-        useNativeDriver: false
+				useNativeDriver: false
 			}),
 			Animated.spring(this.state.positionPopup, {
 				toValue: (HEIGHT / 2) - (this.state.popupHeight / 2),
@@ -54,7 +54,7 @@ class Popup extends Component {
 			})
 		]).start()
 
-		if(config.autoClose && config.timing !== 0) {
+		if (config.autoClose && config.timing !== 0) {
 			const duration = config.timing > 0 ? config.timing : 5000
 			setTimeout(() => {
 				this.hidePopup()
@@ -62,7 +62,7 @@ class Popup extends Component {
 		}
 	}
 
-	hidePopup(){
+	hidePopup() {
 		Animated.sequence([
 			Animated.timing(this.state.positionPopup, {
 				toValue: HEIGHT,
@@ -92,27 +92,27 @@ class Popup extends Component {
 		)
 	}
 
-	handleImage(type){
-		switch(type){
+	handleImage(type) {
+		switch (type) {
 			case 'Success': return require('../../assets/Success.png')
 			case 'Danger': return require('../../assets/Error.png')
 			case 'Warning': return require('../../assets/Warning.png')
 		}
 	}
 
-	render(){
+	render() {
 		const { title, type, textBody, button, buttonText, callback, background } = this.state
 		let el = null;
 		if (this.state.button) {
 			el = <TouchableOpacity style={[styles.Button, styles[type]]} onPress={callback}>
-					<Text style={styles.TextButton}>{ buttonText }</Text>
-				 </TouchableOpacity>
+				<Text style={styles.TextButton}>{buttonText}</Text>
+			</TouchableOpacity>
 		}
 		else {
 			el = <Text></Text>
 		}
-		return(
-			<Animated.View 
+		return (
+			<Animated.View
 				ref={c => this._root = c}
 				style={[styles.Container, {
 					backgroundColor: background || 'transparent',
@@ -121,29 +121,29 @@ class Popup extends Component {
 						{ translateY: this.state.positionView }
 					]
 				}]}>
-				<Animated.View 
+				<Animated.View
 					onLayout={event => {
 						this.setState({ popupHeight: event.nativeEvent.layout.height })
 					}}
 					style={[styles.Message, {
 						transform: [
 							{ translateY: this.state.positionPopup }
-						] 
+						]
 					}]}
-				
-			>
-				<View style={styles.Header} />
+
+				>
+					<View style={styles.Header} />
 					{
-						this.state.icon ? ( this.state.icon ) :
-						<Image 
-							source={this.handleImage(type)}
-							resizeMode="contain"
-							style={styles.Image}
-						/>
+						this.state.icon ? (this.state.icon) :
+							<Image
+								source={this.handleImage(type)}
+								resizeMode="contain"
+								style={styles.Image}
+							/>
 					}
 					<View style={styles.Content}>
-						<Text style={styles.Title}>{ title }</Text>
-						<Text style={styles.Desc}>{ textBody }</Text>
+						<Text style={styles.Title}>{title}</Text>
+						<Text style={styles.Desc}>{textBody}</Text>
 						{el}
 					</View>
 				</Animated.View>
@@ -155,14 +155,14 @@ class Popup extends Component {
 const styles = StyleSheet.create({
 	Container: {
 		position: 'absolute',
-		zIndex: 9,
+		zIndex: 99999,
 		width: WIDTH,
 		height: HEIGHT,
 		backgroundColor: 'rgba(0, 0, 0, 0.5)',
 		alignItems: 'center',
 		top: 0,
 		left: 0
-	},  
+	},
 	Message: {
 		maxWidth: 300,
 		width: 230,
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
 	Content: {
 		padding: 20,
 		alignItems: 'center'
-	},  
+	},
 	Header: {
 		height: 230,
 		width: 230,
@@ -185,9 +185,9 @@ const styles = StyleSheet.create({
 		marginTop: -120
 	},
 	Image: {
-		width: 150, 
-		height: 80, 
-		position: 'absolute', 
+		width: 150,
+		height: 80,
+		position: 'absolute',
 		top: 20
 	},
 	Title: {
