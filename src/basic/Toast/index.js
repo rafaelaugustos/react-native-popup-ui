@@ -39,7 +39,7 @@ class Toast extends Component {
     });
 
     Animated.spring(this.state.toast, {
-      toValue: height - 130,
+      toValue: height - 150,
       bounciness: 15,
       useNativeDriver: true,
     }).start();
@@ -78,7 +78,7 @@ class Toast extends Component {
 
   hideToast() {
     Animated.timing(this.state.toast, {
-      toValue: height,
+      toValue: height + 500,
       duration: 300,
       useNativeDriver: true,
     }).start();
