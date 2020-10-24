@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
-import {View, TouchableOpacity, Text, Image} from 'react-native';
-import {Popup} from 'popup-ui';
+import React, { Component } from 'react';
+import { View, TouchableOpacity, Text, Image } from 'react-native';
+// import { Popup } from 'popup-ui';
 import Toast from './Toast';
 import Root from './Root';
+import Popup from './Popup';
 
 class App extends Component {
   render() {
@@ -13,7 +14,7 @@ class App extends Component {
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: 'red',
+            backgroundColor: '#3498db',
           }}>
           <TouchableOpacity
             onPress={() =>
@@ -25,7 +26,7 @@ class App extends Component {
                 icon: (
                   <Image
                     source={require('./assets/tick.png')}
-                    style={{width: 25, height: 25}}
+                    style={{ width: 25, height: 25 }}
                     resizeMode="contain"
                   />
                 ),
@@ -45,7 +46,7 @@ class App extends Component {
                 icon: (
                   <Image
                     source={require('./assets/close.png')}
-                    style={{width: 15, height: 15}}
+                    style={{ width: 15, height: 15 }}
                     resizeMode="contain"
                   />
                 ),
@@ -65,7 +66,7 @@ class App extends Component {
                 icon: (
                   <Image
                     source={require('./assets/warning.png')}
-                    style={{width: 25, height: 25}}
+                    style={{ width: 25, height: 25 }}
                     resizeMode="contain"
                   />
                 ),
@@ -88,7 +89,7 @@ class App extends Component {
                       uri:
                         'https://www.acejundiai.com.br/wp-content/uploads/2018/12/success-icon-09.png',
                     }}
-                    style={{width: 50, height: 50}}
+                    style={{ width: 50, height: 50 }}
                     resizeMode="contain"
                   />
                 ),

@@ -94,9 +94,9 @@ class Popup extends Component {
 
 	handleImage(type) {
 		switch (type) {
-			case 'Success': return require('../../assets/Success.png')
-			case 'Danger': return require('../../assets/Error.png')
-			case 'Warning': return require('../../assets/Warning.png')
+			case 'Success': return require('./assets/popup/Success.png')
+			case 'Danger': return require('./assets/popup/Error.png')
+			case 'Warning': return require('./assets/popup/Warning.png')
 		}
 	}
 

@@ -5008,13 +5008,8 @@ pn@^1.1.0:
   resolved "https://registry.yarnpkg.com/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
   integrity sha512-2qHaIQr2VLRFoxe2nASzsV6ef4yOOH+Fi9FBOVH6cqeSgUnoyySPZkxzLuzd+RYOQTRpROA0ztTMqxROKSb/nA==
 
-popup-ui@../popup-ui-1.0.16.tgz:
-  version "1.0.16"
-  resolved "../popup-ui-1.0.16.tgz#d9412e60f8af76c421cd4c60ea4b57ef23dff20a"
-
-popup-ui@../popup-ui-1.0.17.tgz:
-  version "1.0.17"
-  resolved "../popup-ui-1.0.17.tgz#590e826cc1bd0a398e51077ca8908e710815cf70"
+popup-ui@../:
+  version "1.2.0"
 
 posix-character-classes@^0.1.0:
   version "0.1.1"

@@ -10,7 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "popup-ui": "../popup-ui-1.0.17.tgz",
+    "popup-ui": "../",
     "react": "16.9.0",
     "react-native": "0.61.4"
   },

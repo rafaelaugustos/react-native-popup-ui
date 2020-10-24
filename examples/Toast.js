@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Animated,
@@ -8,12 +8,12 @@ import {
   Dimensions,
 } from 'react-native';
 
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 class Toast extends Component {
   static toastInstance;
 
-  static show({...config}) {
+  static show({ ...config }) {
     this.toastInstance.start(config);
   }
 
@@ -28,7 +28,7 @@ class Toast extends Component {
     // currentPercentage: this.getPercentage(90, width),
   };
 
-  start({...config}) {
+  start({ ...config }) {
     this.setState({
       title: config.title,
       text: config.text,
@@ -36,19 +36,16 @@ class Toast extends Component {
       icon: config.icon,
       timing: config.timing,
       type: config.type,
+      position: config.position
     });
 
     Animated.spring(this.state.toast, {
-      toValue: height - 130,
+      toValue: height - 150,
       bounciness: 15,
       useNativeDriver: true,
     }).start();
 
     const duration = config.timing > 0 ? config.timing : 5000;
-
-    // setInterval(() => {
-
-    // }, )
 
     setTimeout(() => {
       // this.runTiming();
@@ -62,7 +59,7 @@ class Toast extends Component {
       if (this.state.currentTime >= 5) {
         clearInterval(interval);
       } else {
-        this.setState({currentTime: this.state.currentTime + 1});
+        this.setState({ currentTime: this.state.currentTime + 1 });
         this.runTiming();
       }
     }, 1000);
@@ -78,7 +75,7 @@ class Toast extends Component {
 
   hideToast() {
     Animated.timing(this.state.toast, {
-      toValue: height,
+      toValue: height + 500,
       duration: 300,
       useNativeDriver: true,
     }).start();
@@ -89,7 +86,7 @@ class Toast extends Component {
   }
 
   render() {
-    const {title, text, icon, color} = this.state;
+    const { title, text, icon, color } = this.state;
     return (
       <Animated.View
         ref={c => (this._root = c)}
@@ -97,7 +94,7 @@ class Toast extends Component {
           styles.toast,
           {
             backgroundColor: color,
-            transform: [{translateY: this.state.toast}],
+            transform: [{ translateY: this.state.toast }],
           },
         ]}>
         {icon && <View style={[styles.iconStatus]}>{icon}</View>}
